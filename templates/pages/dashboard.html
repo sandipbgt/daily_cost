@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}Dashboard{% endblock %}
+
+{% block stylesheet %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/highcharts/css/highcharts.css' %}"/>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} page-dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Dashboard</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Transactions According To Month</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="transactions_bar_chart"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'bower_components/highcharts/js/highcharts.js' %}"></script>
+{% endblock %}
+
+{% block extrabody %}
+    <script>
+        $(function () {
+
+            // bar chart
+            var barChart = Highcharts.chart('transactions_bar_chart', {
+                chart: {
+                    type: 'column'
+                },
+                credits: false,
+                title: {
+                    text: 'Income and Expense Trend'
+                },
+                xAxis: {
+                    categories: {{ bar_chart_categories | safe }}
+                },
+                yAxis: {
+                    title: {
+                        text: 'Currency in NPR'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{point.x}</span><br>',
+                    pointFormat: '<span>{series.name}</span>: <b>Rs. {point.y:.2f}</b><br/>'
+                },
+                series: {{ bar_chart_series | safe}}
+            });
+        });
+    </script>
+{% endblock %}
+

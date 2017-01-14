@@ -1,0 +1,26 @@
+{
+  "name": "daily_cost",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Sandip Bhagat"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.6.4",
+    "highcharts": "^5.0.6"
+  }
+}

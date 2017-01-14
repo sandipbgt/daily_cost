@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Name of the application
+NAME="daily_cost_app"
+
+# Django project directory
+DJANGODIR=/home/bgt/workspace/daily_cost
+
+# we will communicate using this unix socket
+SOCKFILE=/home/bgt/workspace/daily_cost/run/gunicorn.sock
+
+# log file 
+LOGFILE=/home/bgt/workspace/daily_cost/log/gunicorn_daily_cost.log
+
+# log file directory
+LOGDIR=$(dirname $LOGFILE)
+
+# log level
+LOG_LEVEL=error
+
+# the user to run as
+USER=bgt
+
+# the group to run as
+GROUP=bgt
+
+# how many worker processes should Gunicorn spawn
+NUM_WORKERS=3
+
+# which settings file should Django use
+DJANGO_SETTINGS_MODULE=daily_cost.settings
+
+# WSGI module name
+DJANGO_WSGI_MODULE=daily_cost.wsgi
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+cd $DJANGODIR
+source venv/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+test -d $LOGDIR || mkdir -p $LOGDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --user=$USER --group=$GROUP \
+  --bind=unix:$SOCKFILE \
+  --log-level=$LOG_LEVEL \
+  --log-file=$LOGFILE 2>>$LOGFILE

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_title %}Delete category{% endblock %}
+
+{% block bodyclass %}{{ block.super }} page-category-delete{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>Delete Category</h3>
+            <hr>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-8">
+
+            <p class="lead">Are you sure, you want to delete category <strong>{{ category.name }}</strong> ?</p>
+
+            <form method="POST" class="form-horizontal">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" {% block angular_header %}{% endblock %}>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <title>{% block head_title %}Home{% endblock %}{% block head_title_base %} | Daily Cost Management System{% endblock %}</title>
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    {% endblock %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    {% include 'google_analytics_snippet.html' %}
+
+    {% block extra_head %}{% endblock %}
+
+</head>
+<body class="{% block bodyclass %}page-home{% endblock %}">
+<div class="page-wrapper">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="logo navbar-brand" href="{% url 'home' %}">Daily Cost</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+
+                {% if user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="{% url 'dashboard' %}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="{% url 'categories:list' %}"><i class="fa fa-list"></i> Categories</a></li>
+                        <li><a href="{% url 'transactions:list' %}"><i class="fa fa-money"></i> Transactions</a></li>
+                    </ul>
+                {% endif %}
+
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    {% if not user.is_authenticated %}
+                        <li><a href="{% url 'users:login' %}">Login</a></li>
+                        <li><a href="{% url 'users:register' %}">Register</a></li>
+                    {% endif %}
+
+                    {% if request.user.is_authenticated %}
+                        <li><a><i class="fa fa-user"></i> {{ request.user.get_full_name }}</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="settings">
+                                <li><a href="{% url 'users:password_change' %}"><i class="fa fa-edit"></i> Change Password</a></li>
+                                <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+            </div>
+        </div>
+    </div> <!-- .navbar -->
+
+    <main class="main-wrapper">
+        {% block content %}
+        {% endblock %}
+    </main> <!-- .main-wrapper -->
+
+    <footer class="footer-secondary">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Built with <i class="fa fa-heart" style="color: red;"></i> in Biratnagar</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">© 2017 Daily Cost</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div> <!-- .page-wrapper -->
+
+{% block javascript %}
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+{% endblock %}
+
+{% block extrabody %}{% endblock %}
+
+</body>
+</html>
