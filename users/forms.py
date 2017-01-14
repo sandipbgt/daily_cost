@@ -51,6 +51,7 @@ class RegisterForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
+        user.send_confirmation_email()
         return user
 
 
