@@ -98,3 +98,5 @@ ENV/
 TODO.txt
 
 /staticfiles/bower_components/
+
+/.idea/

@@ -147,7 +147,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-PAGE_SIZE = 10
+PAGE_SIZE = 20
 
 # Database Backup
 DBBACKUP_DATE_FORMAT = '%Y-%m-%d-%H%M%S'

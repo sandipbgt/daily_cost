@@ -84,19 +84,9 @@ class LoginForm(forms.Form):
             except User.DoesNotExist:
                 user = None
 
-            # raise forms.ValidationError("Invalid login credentials.")
-
         if user:
             return user.email
         return None
-
-    # def clean(self):
-    #     try:
-    #         User.objects.get(email=self.cleaned_data.get('username'))
-    #     except User.DoesNotExist:
-    #         raise forms.ValidationError("Invalid login credentials.")
-    #
-    #     return self.cleaned_data
 
 
 class PasswordChangeForm(forms.Form):

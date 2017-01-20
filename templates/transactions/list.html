@@ -3,6 +3,11 @@
 
 {% block head_title %}List Transactions{% endblock %}
 
+{% block stylesheet %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}"/>
+{% endblock %}
+
 {% block bodyclass %}{{ block.super }} page-transaction{% endblock %}
 
 {% block content %}
@@ -21,14 +26,69 @@
                     </div>
                 {% endfor %}
             {% endif %}
-
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <a href="{% url 'transactions:expense_create' %}" class="btn btn-primary pull-right"><span class="fa fa-plus"></span> Add Expense</a>
-            <a href="{% url 'transactions:income_create' %}" class="btn btn-primary pull-right" style="margin-right:5px;"><span class="fa fa-plus"></span> Add Income</a>
+        <div class="col-md-offset-8 col-md-4">
+            <h3>Available balance:
+                {% if balance_left >= 0 %}
+                    <span class="text-success">Nrs. {{ balance_left }}</span>
+                {% else %}
+                    <span class="text-danger">Nrs. {{ balance_left }}</span>
+                {% endif %}
+            </h3>
+            <span class="text-muted">Current month ({% now "F" %})</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-3">
+            <form method="GET" class="form-inline">
+                <input type="hidden" name="from_date" value="{% if from_date %}{{ from_date }}{% endif %}">
+                <input type="hidden" name="to_date" value="{% if to_date %}{{ to_date }}{% endif %}">
+
+                <div class="form-group">
+                    <input class="form-control" name="search" placeholder="Search transactions..." value="{% if search %}{{ search }}{% endif %}">
+                    <button type="submit" class="btn btn-primary"><em class="fa fa-search"></em> Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            <form method="GET" class="form-inline" style="margin-left: 75px;">
+                <input type="hidden" name="search" value="{% if search %}{{ search }}{% endif %}">
+
+                <div class="form-group">
+                    <label class="control-label">From</label>
+                    <input style="width: 114px;" class="form-control" id="id_from_date" name="from_date" placeholder="From date" value="{% if from_date %}{{ from_date }}{% endif %}">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">To</label>
+                    <input style="width: 114px;" class="form-control" id="id_to_date" name="to_date" placeholder="To date" value="{% if to_date %}{{ to_date }}{% endif %}">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"><em class="fa fa-filter"></em> Filter</button>
+                </div>
+
+                <div class="form-group">
+                    <a href="{% url 'transactions:list' %}" class="btn btn-info btn-block">Reset</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'transactions:expense_create' %}" class="btn btn-danger btn-block"><span class="fa fa-plus"></span> Add Expense</a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'transactions:income_create' %}" class="btn btn-success btn-block" style="margin-right:5px;"><span class="fa fa-plus"></span> Add Income</a>
         </div>
     </div>
 
@@ -41,10 +101,10 @@
                     <tr class="bg-primary">
                         <th>#</th>
                         <th>Date</th>
+                        <th>Type</th>
                         <th>Category</th>
                         <th>Title</th>
-                        <th>Debit</th>
-                        <th>Credit</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -53,10 +113,22 @@
                         <tr>
                             <td>{{ sn | add:forloop.counter}}</td>
                             <td>{{ transaction.transaction_date }}</td>
+                            <td>
+                                {% if transaction.type == 'Income' %}
+                                    <span class="text-success">{{ transaction.type }}</span>
+                                {% elif transaction.type == 'Expense' %}
+                                    <span class="text-danger">{{ transaction.type }}</span>
+                                {% endif %}
+                            </td>
                             <td>{{ transaction.category.name }}</td>
                             <td>{{ transaction.title }}</td>
-                            <td><span class="text-danger"><strong>{{ transaction.debit }}</strong></span></td>
-                            <td><span class="text-success"><strong>{{ transaction.credit }}</strong></span></td>
+                            <td>
+                                {% if transaction.type == 'Income' %}
+                                    <span class="text-success">{{ transaction.credit }}</span>
+                                {% elif transaction.type == 'Expense' %}
+                                    <span class="text-danger">{{ transaction.debit }}</span>
+                                {% endif %}
+                            </td>
                             <td>
                                 <a class="btn btn-success btn-sm" href="{% url 'transactions:edit' transaction.pk %}"><i class="fa fa-edit"></i> Edit</a>
                                 <a class="btn btn-danger btn-sm" href="{% url 'transactions:delete' transaction.pk %}"><i class="fa fa-trash"></i> Delete</a>
@@ -75,4 +147,22 @@
     {% include 'pagination_snippet.html' with rows=transactions %}
 
 </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+             var datepickerOptions = {
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: 'linked',
+                keyboardNavigation: false,
+            };
+
+            $("#id_from_date").datepicker(datepickerOptions);
+            $("#id_to_date").datepicker(datepickerOptions);
+        });
+    </script>
 {% endblock %}

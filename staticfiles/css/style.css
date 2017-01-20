@@ -1,5 +1,5 @@
-body, html {
-    padding-top: 40px;
+body {
+    padding-top: 70px;
 }
 
 a:hover {
@@ -8,4 +8,26 @@ a:hover {
 
 .form-horizontal .control-label {
     text-align: left;
+}
+
+.padding-left-0 {
+   padding-left: 0 !important;
+}
+
+.padding-right-0 {
+   padding-right: 0 !important;
+}
+
+.padding-0 {
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+}
+
+.padding-sm {
+   padding-left: 2px !important;
+   padding-right: 2px !important;
+   margin-left: 2px !important;
+   margin-right: 2px !important;
 }
