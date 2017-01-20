@@ -150,9 +150,12 @@ MESSAGE_TAGS = {
 PAGE_SIZE = 10
 
 # Database Backup
-DBBACKUP_PATH = env('DBBACKUP_PATH')
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': DBBACKUP_PATH}
+DBBACKUP_DATE_FORMAT = '%Y-%m-%d-%H%M%S'
+DBBACKUP_FILENAME_TEMPLATE = 'daily_cost-{databasename}-{datetime}.{extension}'
+DBBACKUP_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DBBACKUP_STORAGE_OPTIONS = {
+    'oauth2_access_token': env('DROPBOX_ACCESS_TOKEN'),
+}
 
 BASE_URL = env('BASE_URL')
 ADMIN_EMAIL = env('ADMIN_EMAIL')
