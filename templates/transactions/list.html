@@ -33,9 +33,9 @@
         <div class="col-md-offset-8 col-md-4">
             <h3>Available balance:
                 {% if balance_left >= 0 %}
-                    <span class="text-success">Nrs. {{ balance_left }}</span>
+                    <span class="text-success">Nrs. {{ balance_left | floatformat:2 }}</span>
                 {% else %}
-                    <span class="text-danger">Nrs. {{ balance_left }}</span>
+                    <span class="text-danger">Nrs. {{ balance_left | floatformat:2 }}</span>
                 {% endif %}
             </h3>
             <span class="text-muted">Current month ({% now "F" %})</span>

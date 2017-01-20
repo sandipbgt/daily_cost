@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb231458-280c-46a1-a648-503b85a9c48e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/transactions/filters.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/transactions/templatetags/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/transactions/templatetags/templatehelpers.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-datepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-datetimepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-paper.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-paper.min.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/daily_cost.iml" afterPath="$PROJECT_DIR$/.idea/daily_cost.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/daily_cost/settings.py" afterPath="$PROJECT_DIR$/daily_cost/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/staticfiles/css/style.css" afterPath="$PROJECT_DIR$/staticfiles/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pagination_snippet.html" afterPath="$PROJECT_DIR$/templates/pagination_snippet.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/transactions/list.html" afterPath="$PROJECT_DIR$/templates/transactions/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/transactions/views.py" afterPath="$PROJECT_DIR$/transactions/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users/forms.py" afterPath="$PROJECT_DIR$/users/forms.py" />
     </list>
     <ignored path="daily_cost.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +26,8 @@
       <file leaf-file-name="list.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/transactions/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
+            <state relative-caret-position="391">
+              <caret line="35" column="83" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="83" />
               <folding>
                 <element signature="n#style#0;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -57,7 +40,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/transactions/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
+            <state relative-caret-position="323">
               <caret line="64" column="26" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="26" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -111,7 +94,6 @@
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/pages/views.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/env.example" />
         <option value="$PROJECT_DIR$/categories/models.py" />
         <option value="$PROJECT_DIR$/categories/forms.py" />
@@ -126,6 +108,7 @@
         <option value="$PROJECT_DIR$/transactions/filters.py" />
         <option value="$PROJECT_DIR$/daily_cost/settings.py" />
         <option value="$PROJECT_DIR$/transactions/views.py" />
+        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/templates/transactions/list.html" />
       </list>
     </option>
@@ -221,6 +204,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="supervisor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="daily_cost" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="daily_cost" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -235,7 +232,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bin/python" />
-    <property name="SearchEverywhereHistoryKey" value="set&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/daily_cost/settings.py&#10;sett&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/daily_cost/settings.py&#10;req&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/requirements.txt&#10;style.cs&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/staticfiles/css/style.css&#10;style&#9;null&#9;null&#10;transa/lis&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/transactions/list.html&#10;users/vi&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/users/views.py&#10;categories/del&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/categories/delete.html&#10;categories/view&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/categories/views.py&#10;requirem&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/requirements.txt&#10;.env&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/.env&#10;.git&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/.gitignore&#10;base.ht&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/base.html&#10;regis&#9;null&#9;null&#10;REadme&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/README.md" />
+    <property name="SearchEverywhereHistoryKey" value="goog&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/google_analytics_snippet.html&#10;set&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/daily_cost/settings.py&#10;sett&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/daily_cost/settings.py&#10;req&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/requirements.txt&#10;style.cs&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/staticfiles/css/style.css&#10;style&#9;null&#9;null&#10;transa/lis&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/transactions/list.html&#10;users/vi&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/users/views.py&#10;categories/del&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/categories/delete.html&#10;categories/view&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/categories/views.py&#10;requirem&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/requirements.txt&#10;.env&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/.env&#10;.git&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/.gitignore&#10;base.ht&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/templates/base.html&#10;regis&#9;null&#9;null&#10;REadme&#9;FILE&#9;file:///home/bgt/workspace/daily_cost/README.md" />
     <property name="prop_add_unversioned_files" value="true" />
   </component>
   <component name="RecentsManager">
@@ -405,7 +402,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3644068" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3634895" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -438,6 +435,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -453,6 +451,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -492,6 +491,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -499,6 +499,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -514,6 +515,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -553,6 +555,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -560,6 +563,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -579,13 +583,6 @@
             <folding />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/google_analytics_snippet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -643,20 +640,6 @@
         <state relative-caret-position="115">
           <caret line="99" column="30" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/env.example">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -801,9 +784,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/google_analytics_snippet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env.example">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/transactions/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
+        <state relative-caret-position="323">
           <caret line="64" column="26" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="26" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -813,8 +820,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/transactions/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
+        <state relative-caret-position="391">
+          <caret line="35" column="83" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="83" />
           <folding>
             <element signature="n#style#0;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
