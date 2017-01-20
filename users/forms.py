@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth import password_validation
 
+from categories.models import Category
 from .models import User
 
 
@@ -52,6 +53,8 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         user.send_confirmation_email()
+        category = Category(user=user, name='Uncategorized')
+        category.save()
         return user
 
 
@@ -59,9 +62,9 @@ class LoginForm(forms.Form):
     """
     Form to login a user
     """
-    email = forms.EmailField(
+    username = forms.CharField(
         label='Email',
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username or email'}),
     )
 
     password = forms.CharField(
@@ -70,29 +73,30 @@ class LoginForm(forms.Form):
         strip=False,
     )
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
 
-        if email is None or email is '':
-            raise forms.ValidationError("Email is required.")
-
-        return email
-
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-
-        if password is None or password is '':
-            raise forms.ValidationError("Password is required.")
-
-        return password
-
-    def clean(self):
         try:
-            User.objects.get(email=self.cleaned_data.get('email'))
+            user = User.objects.get(email=username)
         except User.DoesNotExist:
-            raise forms.ValidationError("Invalid login credentials.")
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                user = None
 
-        return self.cleaned_data
+            # raise forms.ValidationError("Invalid login credentials.")
+
+        if user:
+            return user.email
+        return None
+
+    # def clean(self):
+    #     try:
+    #         User.objects.get(email=self.cleaned_data.get('username'))
+    #     except User.DoesNotExist:
+    #         raise forms.ValidationError("Invalid login credentials.")
+    #
+    #     return self.cleaned_data
 
 
 class PasswordChangeForm(forms.Form):

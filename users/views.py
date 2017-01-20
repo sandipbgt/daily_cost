@@ -48,10 +48,10 @@ def user_login(request):
 
     if request.method == 'POST':
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
-            user = authenticate(username=email, password=password)
+            user = authenticate(username=username, password=password)
             if user is None:
                 messages.error(request, "Invalid login credentials")
                 return redirect('users:login')
