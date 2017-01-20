@@ -49,8 +49,10 @@
                             <td>{{ sn | add:forloop.counter}}</td>
                             <td>{{ category.name }}</td>
                             <td>
-                                <a class="btn btn-success btn-sm" href="{% url 'categories:edit' category.pk %}"><i class="fa fa-edit"></i> Edit</a>
-                                <a class="btn btn-danger btn-sm" href="{% url 'categories:delete' category.pk %}"><i class="fa fa-trash"></i> Delete</a>
+                                {% if category.name != 'Uncategorized' %}
+                                    <a class="btn btn-success btn-sm" href="{% url 'categories:edit' category.pk %}"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-danger btn-sm" href="{% url 'categories:delete' category.pk %}"><i class="fa fa-trash"></i> Delete</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% empty %}

@@ -64,6 +64,10 @@ def category_edit(request, pk):
     except Category.DoesNotExist:
         raise Http404()
 
+    default_category = request.user.categories.get(name='Uncategorized')
+    if category.pk == default_category.pk:
+        raise Http404()
+
     form = CategoryForm(instance=category, data=request.POST or None, user=request.user)
     if request.method == 'POST':
         if form.is_valid():
@@ -87,7 +91,16 @@ def category_delete(request, pk):
     except Category.DoesNotExist:
         raise Http404()
 
+    default_category = request.user.categories.get(name='Uncategorized')
+    if category.pk == default_category.pk:
+        raise Http404()
+
     if request.method == 'POST':
+        transactions = category.transactions.all()
+        default_category = request.user.categories.get(name='Uncategorized')
+        for transaction in transactions:
+            transaction.category = default_category
+            transaction.save()
         category.delete()
         messages.success(request, "Category %s deleted." % category.name)
         return redirect('categories:list')
