@@ -41,10 +41,15 @@ def user_login(request):
     """
     Login a user
     """
+    next = request.GET.get('next', None)
     if request.user.is_authenticated():
         return redirect('dashboard')
 
     form = LoginForm(data=request.POST or None)
+
+    context = {
+        'form': form,
+    }
 
     if request.method == 'POST':
         if form.is_valid():
@@ -54,20 +59,18 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is None:
                 messages.error(request, "Invalid login credentials")
-                return redirect('users:login')
+                return render(request, 'users/login.html', context)
             else:
                 if not user.is_confirmed:
                     messages.warning(request, "Email not confirmed. Please confirm your account by " +
                                      "clicking on the activation link sent to your email.")
-                    return redirect('users:login')
+                    return render(request, 'users/login.html', context)
 
                 login(request, user)
 
+                if next:
+                    return redirect(next)
                 return redirect('dashboard')
-
-    context = {
-        'form': form,
-    }
 
     return render(request, 'users/login.html', context)
 
