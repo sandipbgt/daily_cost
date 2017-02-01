@@ -31,3 +31,11 @@ a:hover {
    margin-left: 2px !important;
    margin-right: 2px !important;
 }
+
+.text-red {
+    color: #ff0000;
+}
+
+.text-green {
+    color: #008000;
+}

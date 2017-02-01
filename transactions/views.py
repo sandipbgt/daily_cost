@@ -1,16 +1,16 @@
-from functools import reduce
 from datetime import date
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 
 from transactions.filters import TransactionFilter
+from transactions.utils import export_to_xlsx
 from .forms import ExpenseForm, IncomeForm
 from .models import Transaction
 
@@ -36,6 +36,9 @@ def transaction_list(request):
     }
     f = TransactionFilter(filter_args, queryset=request.user.transactions.all())
     transactions = f.qs
+
+    if request.GET.get('excel'):
+        return export_to_xlsx(transactions, from_date, to_date)
 
     total_income = 0.0
     total_expense = 0.0

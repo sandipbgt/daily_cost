@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load templatehelpers %}
 
 {% block head_title %}List Transactions{% endblock %}
 
@@ -60,7 +61,7 @@
         </div>
 
         <div class="col-md-5">
-            <form method="GET" class="form-inline" style="margin-left: 75px;">
+            <form method="GET" class="form-inline" style="margin-left: 50px;">
                 <input type="hidden" name="search" value="{% if search %}{{ search }}{% endif %}">
 
                 <div class="form-group">
@@ -75,6 +76,10 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"><em class="fa fa-filter"></em> Filter</button>
+                </div>
+
+                <div class="form-group">
+                    <a title="Download in Excel format" href="{% relative_url 'true' 'excel' request.GET.urlencode %}" class="btn btn-success"><em class="fa fa-file-excel-o"></em></a>
                 </div>
 
                 <div class="form-group">
@@ -115,18 +120,18 @@
                             <td>{{ transaction.transaction_date }}</td>
                             <td>
                                 {% if transaction.type == 'Income' %}
-                                    <span class="text-success">{{ transaction.type }}</span>
+                                    <span class="text-green">{{ transaction.type }}</span>
                                 {% elif transaction.type == 'Expense' %}
-                                    <span class="text-danger">{{ transaction.type }}</span>
+                                    <span class="text-red">{{ transaction.type }}</span>
                                 {% endif %}
                             </td>
                             <td>{{ transaction.category.name }}</td>
                             <td>{{ transaction.title }}</td>
                             <td>
                                 {% if transaction.type == 'Income' %}
-                                    <span class="text-success">{{ transaction.credit }}</span>
+                                    <span class="text-green">{{ transaction.credit }}</span>
                                 {% elif transaction.type == 'Expense' %}
-                                    <span class="text-danger">{{ transaction.debit }}</span>
+                                    <span class="text-red">{{ transaction.debit }}</span>
                                 {% endif %}
                             </td>
                             <td>
@@ -159,6 +164,7 @@
                 autoclose: true,
                 todayBtn: 'linked',
                 keyboardNavigation: false,
+                orientation: "bottom right"
             };
 
             $("#id_from_date").datepicker(datepickerOptions);
