@@ -24,7 +24,8 @@ def dashboard(request):
     """
     categories = request.user.categories.all()
 
-    transaction_by_categories = request.user.transactions\
+    transaction_by_categories = request.user.transactions \
+        .filter(transaction_date__year=timezone.now().date().year) \
         .values('category__name')\
         .annotate(income=Sum('credit'), expense=Sum('debit'))\
         .order_by('category__name')
