@@ -1,8 +1,13 @@
 from io import BytesIO
 
 import xlsxwriter
+from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.utils import timezone
+
+from weasyprint import HTML
 
 
 def export_to_xlsx(transactions, from_date, to_date):
@@ -122,4 +127,40 @@ def export_to_xlsx(transactions, from_date, to_date):
     xlsx_data = buffer.getvalue()
     buffer.close()
     response.write(xlsx_data)
+    return response
+
+
+def export_to_pdf(transactions, from_date, to_date):
+    total_income = 0
+    total_expense = 0
+    for transaction in transactions:
+        if transaction.type == 'Income':
+            total_income += float(transaction.credit)
+        elif transaction.type == 'Expense':
+            total_expense += float(transaction.debit)
+
+    filename = from_date + ' to ' + to_date + '.pdf'
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
+
+    context = {
+        'base_url': settings.BASE_URL,
+        'from_date': timezone.datetime.strptime(from_date, '%Y-%m-%d').date(),
+        'to_date': timezone.datetime.strptime(to_date, '%Y-%m-%d').date(),
+        'transactions': transactions,
+        'total_income': total_income,
+        'total_expense': total_expense,
+        'balance_left': total_income - total_expense,
+    }
+
+    # return render(None,'transactions/list_pdf.html', context)
+
+    html_string = render_to_string('transactions/list_pdf.html', context)
+    html = HTML(string=html_string)
+
+    buffer = BytesIO()
+    html.write_pdf(buffer)
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
     return response

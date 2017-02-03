@@ -1,0 +1,189 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 5px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border: 1px solid #000000;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-red {
+    color: #ff0000;
+}
+
+.text-green {
+    color: #008000;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+@page {
+    size: A4 portrait;
+    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+    background: #ffffff!important;
+
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        vertical-align: middle;
+        font-family: sans-serif;
+        text-align: center;
+    }
+
+    @bottom-left {
+        content: 'http://www.dailycost.sandipbgt.com';
+        vertical-align: middle;
+        font-family: sans-serif;
+        text-align: center;
+    }
+}
+
+@media print {
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+        font-size: 14px!important;
+        line-height: 1.42857143!important;
+        color: #000000!important;
+    }
+
+    *,
+    *:before,
+    *:after {
+        color: #000 !important;
+        background: transparent !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .btn > .caret,
+    .dropup > .btn > .caret {
+        border-top-color: #000 !important;
+    }
+
+    .label {
+        border: 1px solid #000;
+    }
+
+    .table {
+        border-collapse: collapse !important;
+    }
+
+    .table th {
+        text-align: center!important;
+    }
+
+    .table td,
+    .table th {
+        background-color: #ffffff !important;
+        border: 1px solid #000000 !important;
+    }
+
+    .text-red {
+        color: #ff0000 !important;
+    }
+
+    .text-green {
+        color: #008000 !important;
+    }
+
+    hr {
+        margin-top: 20px!important;
+        margin-bottom: 20px!important;
+        border: 0!important;
+        border-top: 1px solid #eee !important;
+    }
+}

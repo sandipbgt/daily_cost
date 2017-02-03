@@ -11,3 +11,4 @@ PyJWT==1.4.2
 dropbox==7.1.1
 django-storages==1.5.2
 XlsxWriter==0.9.6
+WeasyPrint==0.34

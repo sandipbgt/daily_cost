@@ -55,45 +55,46 @@
 
                 <div class="form-group">
                     <input class="form-control" name="search" placeholder="Search transactions..." value="{% if search %}{{ search }}{% endif %}">
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary"><em class="fa fa-search"></em> Search</button>
                 </div>
             </form>
         </div>
 
-        <div class="col-md-5">
-            <form method="GET" class="form-inline" style="margin-left: 50px;">
+        <div class="col-md-6">
+            <form method="GET" class="form-inline">
                 <input type="hidden" name="search" value="{% if search %}{{ search }}{% endif %}">
 
                 <div class="form-group">
                     <label class="control-label">From</label>
-                    <input style="width: 114px;" class="form-control" id="id_from_date" name="from_date" placeholder="From date" value="{% if from_date %}{{ from_date }}{% endif %}">
+                    <input class="form-control" id="id_from_date" name="from_date" placeholder="From date" value="{% if from_date %}{{ from_date }}{% endif %}">
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">To</label>
-                    <input style="width: 114px;" class="form-control" id="id_to_date" name="to_date" placeholder="To date" value="{% if to_date %}{{ to_date }}{% endif %}">
+                    <input class="form-control" id="id_to_date" name="to_date" placeholder="To date" value="{% if to_date %}{{ to_date }}{% endif %}">
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"><em class="fa fa-filter"></em> Filter</button>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary"><em class="fa fa-filter"></em> Filter</button>
+                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a title="Export to Excel format" href="{% relative_url 'excel' 'output' request.GET.urlencode %}"><em class="fa fa-file-excel-o text-success"></em> Export to Excel</a></li>
+                        <li><a title="Export to PDF format" href="{% relative_url 'pdf' 'output' request.GET.urlencode %}"><em class="fa fa-file-pdf-o text-danger"></em> Export to PDF</a></li>
+                    </ul>
                 </div>
 
-                <div class="form-group">
-                    <a title="Download in Excel format" href="{% relative_url 'true' 'excel' request.GET.urlencode %}" class="btn btn-success"><em class="fa fa-file-excel-o"></em></a>
-                </div>
+                <a href="{% url 'transactions:list' %}" class="btn btn-info">Reset</a>
 
-                <div class="form-group">
-                    <a href="{% url 'transactions:list' %}" class="btn btn-info btn-block">Reset</a>
-                </div>
             </form>
         </div>
 
-        <div class="col-md-2">
-            <a href="{% url 'transactions:expense_create' %}" class="btn btn-danger btn-block"><span class="fa fa-plus"></span> Add Expense</a>
-        </div>
-
-        <div class="col-md-2">
-            <a href="{% url 'transactions:income_create' %}" class="btn btn-success btn-block" style="margin-right:5px;"><span class="fa fa-plus"></span> Add Income</a>
+        <div class="col-md-3">
+            <div class="pull-right">
+                <a href="{% url 'transactions:expense_create' %}" class="btn btn-danger"><span class="fa fa-plus"></span> Add Expense</a>
+                <a href="{% url 'transactions:income_create' %}" class="btn btn-success" style="margin-right:5px;"><span class="fa fa-plus"></span> Add Income</a>
+            </div>
         </div>
     </div>
 

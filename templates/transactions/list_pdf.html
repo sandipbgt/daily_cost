@@ -1,0 +1,68 @@
+{% load static %}
+<html>
+    <head>
+        <base href="{{ base_url }}" />
+        <title>Report</title>
+        <link rel="stylesheet" href="{% static 'css/pdf.css' %}" />
+    </head>
+    <body>
+        <div>
+            <h1 class="text-center">Transactions</h1>
+        </div>
+        <div>
+            <ul class="list-unstyled">
+                <li><strong style="width: 80px; display: inline-block;">From Date:</strong> <em>{{ from_date }}</em></li>
+                <li><strong style="width: 80px; display: inline-block;">To Date:</strong> <em>{{ to_date }}</em></li>
+            </ul>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{ transaction.transaction_date }}</td>
+                        <td>
+                            {% if transaction.type == 'Income' %}
+                                <span class="text-green">{{ transaction.type }}</span>
+                            {% elif transaction.type == 'Expense' %}
+                                <span class="text-red">{{ transaction.type }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ transaction.category.name }}</td>
+                        <td>{{ transaction.title }}</td>
+                        <td>
+                            {% if transaction.type == 'Income' %}
+                                <span class="text-green">{{ transaction.credit }}</span>
+                            {% elif transaction.type == 'Expense' %}
+                                <span class="text-red">{{ transaction.debit }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center">No transaction</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <hr>
+
+        <ul class="list-unstyled">
+            <li><strong style="width: 130px; display: inline-block;">TOTAL INCOME:</strong>  <strong>{{ total_income }}</strong></li>
+            <li><strong style="width: 130px; display: inline-block;">TOTAL EXPENSE:</strong> <strong>{{ total_expense }}</strong></li>
+            <li><strong style="width: 130px; display: inline-block;">BALANCE LEFT:</strong> <strong>{{ balance_left | floatformat:2 }}</strong></li>
+        </ul>
+    </body>
+</html>
