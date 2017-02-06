@@ -32,14 +32,22 @@
 
     <div class="row">
         <div class="col-md-offset-8 col-md-4">
-            <h3>Available balance:
-                {% if balance_left >= 0 %}
-                    <span class="text-success">Nrs. {{ balance_left | floatformat:2 }}</span>
-                {% else %}
-                    <span class="text-danger">Nrs. {{ balance_left | floatformat:2 }}</span>
-                {% endif %}
-            </h3>
-            <span class="text-muted">Current month ({% now "F" %})</span>
+
+            <div id="balance-left-wrap">
+                {% include 'transactions/includes/partial_balance_left.html' %}
+            </div>
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <span class="text-muted">Current month <span class="month-name">({% now "F" %})</span></span>
+                    <select id="check-balance" class="form-control input-sm">
+                        {% for month in months %}
+                            <option value="{{ forloop.counter }}" {% if current_month == forloop.counter %}selected="selected"{% endif %}>{{ month }}</option>
+                        {% endfor %}
+                    </select>
+                    <span id="check-balance-loading"></span>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -52,6 +60,7 @@
             <form method="GET" class="form-inline">
                 <input type="hidden" name="from_date" value="{% if from_date %}{{ from_date }}{% endif %}">
                 <input type="hidden" name="to_date" value="{% if to_date %}{{ to_date }}{% endif %}">
+                <input type="hidden" name="category" value="{% if category %}{{ category }}{% endif %}">
 
                 <div class="form-group">
                     <input class="form-control" name="search" placeholder="Search transactions..." value="{% if search %}{{ search }}{% endif %}">
@@ -65,6 +74,7 @@
         <div class="col-md-6">
             <form method="GET" class="form-inline">
                 <input type="hidden" name="search" value="{% if search %}{{ search }}{% endif %}">
+                <input type="hidden" name="category" value="{% if category %}{{ category }}{% endif %}">
 
                 <div class="form-group">
                     <label class="control-label">From</label>
@@ -170,6 +180,26 @@
 
             $("#id_from_date").datepicker(datepickerOptions);
             $("#id_to_date").datepicker(datepickerOptions);
+
+            // Check balance
+            $("#check-balance").change(function() {
+                var loading = $('#check-balance-loading');
+                var month = $(this).val();
+                var html = "";
+
+                if (month == "") return;
+
+                loading.addClass('fs-blue');
+                $.getJSON("/transactions/?action=get_balance_left&month=" + month, function(data) {
+                    loading.removeClass('fs-blue');
+                    if(data.has_error) {
+                        $("#balance-left-wrap").html('<p class="text-center text-red">' + data.error + '</p>');
+                    } else {
+                        $(".month-name").html('(' + data.month + ')');
+                        $("#balance-left-wrap").html(data.html);
+                    }
+                });
+            });
         });
     </script>
 {% endblock %}

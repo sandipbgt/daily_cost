@@ -47,7 +47,7 @@
                     {% for category in categories %}
                         <tr>
                             <td>{{ sn | add:forloop.counter}}</td>
-                            <td>{{ category.name }}</td>
+                            <td><a href="{% url 'transactions:list' %}?category={{ category.name }}">{{ category.name }}</a></td>
                             <td>
                                 {% if category.name != 'Uncategorized' %}
                                     <a class="btn btn-success btn-sm" href="{% url 'categories:edit' category.pk %}"><i class="fa fa-edit"></i> Edit</a>

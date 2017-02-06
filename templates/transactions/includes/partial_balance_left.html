@@ -1,0 +1,7 @@
+<h3>Available balance:
+    {% if balance_left >= 0 %}
+        <span class="text-success">Nrs. {{ balance_left | floatformat:2 }}</span>
+    {% else %}
+        <span class="text-danger">Nrs. {{ balance_left | floatformat:2 }}</span>
+    {% endif %}
+</h3>

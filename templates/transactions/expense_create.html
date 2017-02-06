@@ -14,22 +14,34 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-
+        <div class="col-md-12">
             <h3>Add Expense</h3>
             <hr>
+        </div>
+    </div>
 
-            {% if messages %}
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'transactions:list' %}">Transactions</a></li>
+                <li class="active">New expense</li>
+            </ol>
+        </div>
+    </div>
+
+    {% if messages %}
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
                 {% for message in messages %}
                     <div class="alert alert-dismissible alert-{{ message.tags }}">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <p>{{ message }}</p>
                     </div>
                 {% endfor %}
-            {% endif %}
-
+            </div>
         </div>
-    </div>
+    {% endif %}
 
     <div class="row">
         <div class="col-md-offset-3 col-md-6">

@@ -10,6 +10,16 @@ from django.utils import timezone
 from weasyprint import HTML
 
 
+def get_full_month_names():
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    return months
+
+
+def get_short_month_names():
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    return months
+
+
 def export_to_xlsx(transactions, from_date, to_date):
     filename = from_date + ' to ' + to_date + '.xlsx'
     response = HttpResponse(content_type='application/vnd.ms-excel')

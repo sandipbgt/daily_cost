@@ -12,7 +12,7 @@ from .forms import (
     LoginForm,
     PasswordChangeForm,
     PasswordResetForm,
-    SendPasswordResetEmailForm,)
+    SendPasswordResetEmailForm, ProfileForm)
 
 
 def user_register(request):
@@ -29,7 +29,8 @@ def user_register(request):
             messages.success(request, "We have sent you confirmation email \
                 Please confirm your account by clicking on the confirmation link \
                 sent to your email.")
-            return redirect('users:login')
+            login(request, user)
+            return redirect('dashboard')
 
     context = {
         'form': form
@@ -61,13 +62,7 @@ def user_login(request):
                 messages.error(request, "Invalid login credentials")
                 return render(request, 'users/login.html', context)
             else:
-                if not user.is_confirmed:
-                    messages.warning(request, "Email not confirmed. Please confirm your account by " +
-                                     "clicking on the activation link sent to your email.")
-                    return render(request, 'users/login.html', context)
-
                 login(request, user)
-
                 if next:
                     return redirect(next)
                 return redirect('dashboard')
@@ -201,6 +196,26 @@ def user_logout(request):
     logout(request)
     messages.success(request, "Logged out successfully!")
     return redirect('users:login')
+
+
+@login_required
+def user_profile_edit(request):
+    """
+    Edit user profile
+    """
+    form = ProfileForm(instance=request.user, data=request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated.")
+            return redirect('users:profile_edit')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'users/profile_edit.html', context)
+
+
 
 
 

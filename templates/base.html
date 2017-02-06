@@ -53,6 +53,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="settings">
+                                <li><a href="{% url 'users:profile_edit' %}"><i class="fa fa-edit"></i> Edit Profile</a></li>
                                 <li><a href="{% url 'users:password_change' %}"><i class="fa fa-edit"></i> Change Password</a></li>
                                 <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
                             </ul>

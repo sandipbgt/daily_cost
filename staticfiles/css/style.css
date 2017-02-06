@@ -39,3 +39,101 @@ a:hover {
 .text-green {
     color: #008000;
 }
+
+.breadcrumb {
+    padding: 7px 0;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #FFFFFF;
+    border-radius: 0;
+}
+
+.fs-white {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    border: solid 2px transparent;
+    border-top-color: white;
+    border-left-color: white;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin: 0 auto;
+
+    -webkit-animation: fetching-spinner 400ms linear infinite;
+    -moz-animation: fetching-spinner 400ms linear infinite;
+    -ms-animation: fetching-spinner 400ms linear infinite;
+    -o-animation: fetching-spinner 400ms linear infinite;
+    animation: fetching-spinner 400ms linear infinite;
+}
+
+.fs-blue {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-left: 9px;
+    vertical-align: middle;
+    border: solid 2px transparent;
+    border-top-color: #2780e3;
+    border-left-color: #2780e3;
+    border-radius: 10px;
+    -webkit-animation: fetching-spinner 400ms linear infinite;
+    -moz-animation: fetching-spinner 400ms linear infinite;
+    -ms-animation: fetching-spinner 400ms linear infinite;
+    -o-animation: fetching-spinner 400ms linear infinite;
+    animation: fetching-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes fetching-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes fetching-spinner {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes fetching-spinner {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes fetching-spinner {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fetching-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

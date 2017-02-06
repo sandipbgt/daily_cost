@@ -1,10 +1,13 @@
 import json
 
+from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth
 from django.shortcuts import render, redirect
+
+from transactions.utils import get_short_month_names
 
 
 def home(request):
@@ -22,6 +25,11 @@ def dashboard(request):
     """
     User dashboard page
     """
+    if request.GET.get('resend_confirmation_email'):
+        # request.user.send_confirmation_email()
+        messages.success(request, "Confirmation email sent.")
+        return redirect('dashboard')
+
     categories = request.user.categories.all()
 
     transaction_by_categories = request.user.transactions \
@@ -37,7 +45,7 @@ def dashboard(request):
         .annotate(income=Sum('credit'), expense=Sum('debit'))\
         .order_by('month')
 
-    months = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    months = get_short_month_names()
 
     transaction_months = [transaction['month'].strftime("%b") for transaction in transactions]
     barchar_income_series = [float(transaction['income']) for transaction in transactions]
